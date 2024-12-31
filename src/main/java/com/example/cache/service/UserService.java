@@ -5,10 +5,13 @@ import com.example.cache.domain.enitity.User;
 import com.example.cache.repository.RedisHashUserRepository;
 import com.example.cache.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
 import java.time.Duration;
+
+import static com.example.cache.config.CacheConfig.CACHE1;
 
 @Service
 @RequiredArgsConstructor
@@ -46,5 +49,10 @@ public class UserService {
                                     .build());
                 });
         return cachedUser;
+    }
+
+    @Cacheable(cacheNames = CACHE1, key = "'user:' + #id")
+    public User getCacheUser(final Long id){
+        return userRepository.findById(id).orElseThrow();
     }
 }

@@ -23,4 +23,8 @@ public class UserController {
         return userService.getRedisHashUser(id);
     }
 
+    @GetMapping("/cache-users/{id}")
+    public User getCacheUser(@PathVariable Long id) {
+        return userService.getCacheUser(id);
+    }
 }
