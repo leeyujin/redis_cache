@@ -1,4 +1,4 @@
-package com.example.jediscache;
+package com.example.cache.domain.enitity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -16,7 +16,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @Getter
 @Entity
-@EntityListeners(AuditingEntityListener.class)
+@EntityListeners(value = AuditingEntityListener.class)
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
